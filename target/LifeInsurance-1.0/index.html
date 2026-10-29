@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSecure - Life Insurance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #243447;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #073b4c;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header h1 {
+            color: #ffd166;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #073b4c, #118ab2);
+            color: white;
+            padding: 75px 8%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #ffd166;
+            color: #073b4c;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 45px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #073b4c;
+            margin-bottom: 25px;
+        }
+
+        .plans {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #00000012;
+            flex: 1 1 240px;
+            max-width: 330px;
+        }
+
+        .card h3 {
+            color: #118ab2;
+            margin-bottom: 12px;
+        }
+
+        .calculator, .contact {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 16px;
+            border: 1px solid #ccd6dd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .result {
+            margin-top: 18px;
+            font-weight: bold;
+            color: #087f5b;
+        }
+
+        footer {
+            background: #073b4c;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        .disclaimer {
+            font-size: 13px;
+            color: #5b6570;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav a {
+                margin: 0 6px;
+            }
+
+            .hero h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LifeSecure</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#plans">Plans</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h2>Protect Your Family's Future</h2>
+    <p>Explore life insurance options designed to help protect the people you love.</p>
+    <a href="#plans" class="button">Explore Plans</a>
+</div>
+
+<section id="plans">
+    <h2>Our Life Insurance Plans</h2>
+
+    <div class="plans">
+        <div class="card">
+            <h3>Term Life Insurance</h3>
+            <p>Life cover for a selected period to help protect your family's financial future.</p>
+        </div>
+
+        <div class="card">
+            <h3>Whole Life Insurance</h3>
+            <p>Explore coverage designed to last for a lifetime, subject to policy terms.</p>
+        </div>
+
+        <div class="card">
+            <h3>Savings-Linked Plans</h3>
+            <p>Explore insurance products that combine life cover with a savings component.</p>
+        </div>
+    </div>
+</section>
+
+<section id="calculator">
+    <h2>Premium Estimate Demo</h2>
+
+    <div class="calculator">
+        <label for="age">Your age</label>
+        <input type="number" id="age" min="18" max="70"
+               placeholder="Enter age (18–70)">
+
+        <label for="cover">Desired life cover (₹)</label>
+        <select id="cover">
+            <option value="1000000">₹10 lakh</option>
+            <option value="2500000">₹25 lakh</option>
+            <option value="5000000">₹50 lakh</option>
+            <option value="10000000">₹1 crore</option>
+        </select>
+
+        <button class="button" onclick="calculatePremium()">
+            Estimate
+        </button>
+
+        <p id="result" class="result" aria-live="polite"></p>
+        <p class="disclaimer">
+            This is a sample calculation for demonstration only, not an actual
+            insurance quote. Real premiums depend on insurer underwriting,
+            health, policy type, term and other factors.
+        </p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Request a Callback</h2>
+
+    <form class="contact" onsubmit="submitForm(event)">
+        <label for="name">Full name</label>
+        <input type="text" id="name" required placeholder="Enter your name">
+
+        <label for="email">Email address</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+
+        <button type="submit" class="button">Submit Request</button>
+
+        <p id="message" class="result" aria-live="polite"></p>
+        <p class="disclaimer">
+            Demo only: this form does not send or store your information.
+        </p>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2026 LifeSecure | Life Insurance Demo Website</p>
+</footer>
+
+<script>
+    function calculatePremium() {
+        const age = Number(document.getElementById("age").value);
+        const cover = Number(document.getElementById("cover").value);
+        const result = document.getElementById("result");
+
+        if (!Number.isInteger(age) || age < 18 || age > 70) {
+            result.textContent = "Please enter an age between 18 and 70.";
+            return;
+        }
+
+        // Illustrative formula only; not an insurance pricing model.
+        const estimatedAnnualAmount =
+            (cover / 100000) * (age * 10);
+
+        result.textContent =
+            "Illustrative annual amount: ₹" +
+            Math.round(estimatedAnnualAmount).toLocaleString("en-IN");
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        document.getElementById("message").textContent =
+            "Thank you, " + name +
+            "! This demo form does not send your request to an insurer.";
+    }
+</script>
+
+</body>
+</html>
+
